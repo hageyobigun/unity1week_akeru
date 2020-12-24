@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour
 
         //穴をあける(ブロックを置く)
         this.UpdateAsObservable()
-            .Where(_ => playerInput.IsMouseButton())
+            .Where(_ => !EventSystem.current.IsPointerOverGameObject()) //UIと傘っているときは向こう
+            .Where(_ => playerInput.IsOpenHole())
             .Subscribe(_ => playerBlock.OpenHole());
     }
 

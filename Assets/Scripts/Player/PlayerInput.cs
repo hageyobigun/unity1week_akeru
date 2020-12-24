@@ -2,6 +2,6 @@
 
 public class PlayerInput
 {
-    public bool IsMouseButton() => Input.GetMouseButtonDown(0);
+    public bool IsOpenHole() => Input.GetMouseButtonDown(0);
 
 }
