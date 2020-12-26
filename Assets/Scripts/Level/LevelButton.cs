@@ -13,6 +13,10 @@ public class LevelButton : MonoBehaviour
     {
         levelbutton = GetComponent<Button>();
         levelbutton.OnClickAsObservable()
-            .Subscribe(_ => LevelManeger.Instance.SelectLevel(level));
+            .Subscribe(_ =>
+            {
+                LevelManeger.Instance.SelectLevel(level);
+                SoundManager.Instance.PlaySe("NormalButton");
+            }) ;
     }
 }

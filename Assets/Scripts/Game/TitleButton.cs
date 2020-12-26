@@ -29,6 +29,7 @@ public class TitleButton : MonoBehaviour
             .Where(_ => Input.GetKeyDown(KeyCode.Return))
             .Subscribe(_ =>
             {
+                SoundManager.Instance.PlaySe("NormalButton");
                 angularFrequency *= 5; //点滅加速
                 scene_move.OnNext(Unit.Default);
             });

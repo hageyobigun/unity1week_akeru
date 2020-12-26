@@ -20,11 +20,19 @@ public class BlockPresenter : MonoBehaviour
 
         //+ボタン（ブロックのサイズを大きくする）
         plusButton.OnClickAsObservable()
-            .Subscribe(_ => blockModel.IncreaseSize());
+            .Subscribe(_ =>
+            {
+                SoundManager.Instance.PlaySe("BlockButton");
+                blockModel.IncreaseSize();
+            });
 
        //-ボタン（ブロックのサイズを小さくする）
         minusButton.OnClickAsObservable()
-            .Subscribe(_ => blockModel.DecreaseSize());
+            .Subscribe(_ =>
+            {
+                SoundManager.Instance.PlaySe("BlockButton");
+                blockModel.DecreaseSize();
+            });
 
         //サイズ反映
         blockModel.size
@@ -32,7 +40,11 @@ public class BlockPresenter : MonoBehaviour
 
         //形が変わった時  形反映
         blockList.OnValueChangedAsObservable()
-            .Subscribe(_ => blockView.UpdateSprite(blockList.captionImage.sprite));
+            .Subscribe(_ =>
+            {
+                SoundManager.Instance.PlaySe("BlockButton");
+                blockView.UpdateSprite(blockList.captionImage.sprite);
+            });
 
     }
 }
