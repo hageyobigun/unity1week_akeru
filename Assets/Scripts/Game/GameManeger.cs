@@ -10,7 +10,6 @@ public class GameManeger : MonoBehaviour
     [SerializeField] private TimerPresenter timerPresenter = null;
     [SerializeField] private PlayerController playerController = null;
 
-    // Start is called before the first frame update
     void Awake()
     {
         StartGame();
@@ -35,6 +34,7 @@ public class GameManeger : MonoBehaviour
 
     public void EndGame()
     {
+        playerController.StopPlayer();
         endPresenter.EndGame();
     }
 
