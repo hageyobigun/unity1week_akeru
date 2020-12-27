@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StageManeger : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer waku = null;
-    [SerializeField] private List<Sprite> wakuList = new List<Sprite>();
+    [SerializeField] private List<GameObject> levelBlockList = new List<GameObject>();
 
     void Awake()
     {
-        if (wakuList.Count < LevelManeger.Instance.levelNumber)
+        Init();
+        if (levelBlockList.Count < LevelManeger.Instance.levelNumber)
         {
             Debug.LogError("そのレベルは存在しません");
         }
         else
         {
-            waku.sprite = wakuList[LevelManeger.Instance.levelNumber];
+            levelBlockList[LevelManeger.Instance.levelNumber].SetActive(true);
+        }
+    }
+
+
+    public void Init()
+    {
+        for (int i = 0; i< levelBlockList.Count; i++)
+        {
+            levelBlockList[i].SetActive(false);
         }
     }
 }

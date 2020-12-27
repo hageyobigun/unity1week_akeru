@@ -35,7 +35,7 @@ public class GameManeger : MonoBehaviour
     public void EndGame()
     {
         playerController.StopPlayer();
-        endPresenter.EndGame();
+        StartCoroutine(endPresenter.EndGame());
     }
 
 }

@@ -65,10 +65,6 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
             bgmIndexes[bgmClips[i].name] = i;
         }
 
-        /* Debug.Log("se ========================"); */
-        /* foreach(var ac in seClips ) { Debug.Log( ac.name ); } */
-        /* Debug.Log("bgm ========================"); */
-        /* foreach(var ac in bgmClips ) { Debug.Log( ac.name ); } */
     }
 
     //------------------------------------------------------------------------------

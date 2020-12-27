@@ -2,6 +2,7 @@
 using UniRx;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EndPresenter : MonoBehaviour
 {
@@ -12,18 +13,30 @@ public class EndPresenter : MonoBehaviour
     public void Awake()
     {
         retryButton.OnClickAsObservable()
-          .Subscribe(_ => SceneManager.LoadScene("Play"));
+          .Subscribe(_ =>
+          {
+              SceneManager.LoadScene("Play");
+              SoundManager.Instance.PlaySe("NormalButton");
+          });
 
         menuButton.OnClickAsObservable()
-            .Subscribe(_ => SceneManager.LoadScene("Menu"));
+            .Subscribe(_ =>
+            {
+                SceneManager.LoadScene("Menu");
+                SoundManager.Instance.PlaySe("NormalButton");
+            });
 
         endView.OffEndText();
+        endView.OFFEndImage();
     }
 
 
-    public void EndGame()
+    public IEnumerator EndGame()
     {
         endView.SetEndText("FINISH!");
+        yield return new WaitForSeconds(1);
+        endView.OffEndText();
+        endView.SetEndImage();
     }
 
 }

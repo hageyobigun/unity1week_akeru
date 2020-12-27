@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelManeger : SingletonMonoBehaviour<LevelManeger>
 {
+    [SerializeField] private ExplainPresenter explainPresenter = null;
+    private bool isFirst;
     private int level;
     public int levelNumber{get {return this.level;}} //取得用
 
     void Start()
     {
+        isFirst = true;
         level = 0;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -18,6 +21,14 @@ public class LevelManeger : SingletonMonoBehaviour<LevelManeger>
     public void SelectLevel(int _level)
     {
         level = _level - 1;
-        SceneManager.LoadScene("Play");
+        if (isFirst)
+        {
+            isFirst = false;
+            explainPresenter.SetExplain();
+        }
+        else
+        {
+            SceneManager.LoadScene("Play");
+        }
     }
 }
