@@ -34,6 +34,7 @@ public class EndPresenter : MonoBehaviour
     public IEnumerator EndGame()
     {
         endView.SetEndText("FINISH!");
+        SoundManager.Instance.PlaySe("Finish");
         yield return new WaitForSeconds(1);
         endView.OffEndText();
         endView.SetEndImage();
